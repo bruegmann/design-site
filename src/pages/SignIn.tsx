@@ -40,7 +40,7 @@ export function SignIn({ setGitHubAccess }: SignInProps) {
                     scope={['user', 'repo']}
                     className="btn btn-primary btn-lg"
                 >
-                    <BoxArrowRight /> Sign in with GitHub
+                    <BoxArrowRight /> Sign in with GitHub, yo!
                 </GitHubLogin>
             </div>
         </Intro>
