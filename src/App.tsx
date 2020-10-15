@@ -1,11 +1,10 @@
 import React, { useState } from "react"
-import { Grid, SidebarMenu, MenuItem, Intro } from "blue-react"
-import GitHubLogin from "react-github-login"
+import { Grid, SidebarMenu, MenuItem } from "blue-react"
 import { BoxArrowLeft, House, List } from "react-bootstrap-icons"
 import HomePage from "./pages/HomePage"
 
 import "./styles/main.scss"
-import { GitHubAccess, proxy } from "./shared"
+import { GitHubAccess } from "./shared"
 import { SignIn } from "./pages/SignIn"
 
 function Auth({ gitHubAccess, setGitHubAccess }: any) {

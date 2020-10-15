@@ -1,3 +1,5 @@
+import { Utilities } from "blue-react"
+
 export const appLogo = require("./logo.svg")
 export const appTitle = "Corporate Design"
 
@@ -6,7 +8,7 @@ interface IPhrases {
 }
 
 export const phrases: IPhrases = {
-    "HELLO_WORLD": ["Hello World!", "Hallo Welt!"]
+    "bsw-cti": ["BSWCti", "BSWCti"]
 }
 
 export function getPhrase(keyword: string, countryCode: string | undefined = undefined, _phrases: IPhrases | undefined = undefined) {
@@ -38,6 +40,7 @@ export interface GitHubAccess {
 export interface GitHubTreeResponse {
     sha: string
     url: string
+    truncated?: boolean
     tree: GitHubTree[]
 }
 
@@ -48,4 +51,38 @@ export interface GitHubTree {
     sha: string
     size: number
     url: string
+}
+
+export type GitHubContentResponse = GitHubContent[]
+
+export interface GitHubContent {
+    download_url?: string
+    git_url: string
+    html_url: string
+    name: string
+    path: string
+    sha: string
+    size: number
+    type: string
+    url: string
+    _links: GitHubLink
+}
+
+export interface GitHubLink {
+    git: string
+    html: string
+    self: string
+}
+
+export async function gitHubApiQuery(gitHubAccess: GitHubAccess, url: string): Promise<GitHubTreeResponse | GitHubContentResponse> {
+    const res = await Utilities.fetchData(`${proxy}${url}`, {
+        method: "GET",
+        headers: {
+            "Authorization": `${gitHubAccess.token_type} ${gitHubAccess.access_token}`,
+            "Content-Type": "application/json"
+        }
+    })
+
+    const treeResponse = await res.json()
+    return treeResponse
 }

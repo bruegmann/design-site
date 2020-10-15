@@ -1,37 +1,26 @@
 import React, { useEffect, useState } from "react"
-import GitHubLogin from "react-github-login"
 
-import { Page, Header, HeaderTitle, Body } from "blue-react"
+import { Page, Header, HeaderTitle, Body, Utilities } from "blue-react"
 
-import { appLogo, appTitle, getPhrase as _, GitHubAccess, GitHubTree, GitHubTreeResponse, proxy } from "../shared"
+import { appLogo, appTitle, getPhrase as _, GitHubAccess, gitHubApiQuery, GitHubContent, GitHubContentResponse, GitHubTree, GitHubTreeResponse, proxy } from "../shared"
+import { SuiteLogo } from "../components/SuiteLogo"
 
 export interface HomePageProps {
     gitHubAccess: GitHubAccess | null
 }
 
 function HomePage({ gitHubAccess }: HomePageProps) {
-    const [tree, setTree] = useState<GitHubTreeResponse | null>(null)
+    const [contents, setContents] = useState<GitHubContentResponse | null>(null)
 
     useEffect(() => {
-        if (gitHubAccess !== null) {
-            fetchRepo()
+        if (gitHubAccess !== null && contents === null) {
+            fetchContents()
         }
-    }, [gitHubAccess])
+    }, [gitHubAccess, contents])
 
-    const fetchRepo = async () => {
-        const res = await fetch(`${proxy}https://api.github.com/repos/bruegmann/design/git/trees/master`, {
-            method: "GET",
-            headers: {
-                "Authorization": `${gitHubAccess.token_type} ${gitHubAccess.access_token}`,
-                "Content-Type": "application/json"
-            }
-        })
-
-        console.log(res)
-
-        const json = await res.json()
-        console.log(json)
-        setTree(json)
+    const fetchContents = async (tree?: GitHubTreeResponse) => {
+        const contents = await gitHubApiQuery(gitHubAccess!, "https://api.github.com/repos/bruegmann/design/contents/suite-logos/icons") as GitHubContentResponse
+        setContents(contents)
     }
 
     return (
@@ -40,20 +29,20 @@ function HomePage({ gitHubAccess }: HomePageProps) {
                 <HeaderTitle logo={appLogo} appTitle={appTitle}>HomePage</HeaderTitle>
             </Header>
 
-            <Body containerClass="container">
-                {tree !== null &&
-                    <>
-                        {tree.tree.map((file: GitHubTree) =>
-                            <div key={file.sha} className="card">
-                                <div className="card-body">
-                                    <a href={file.url} className="btn btn-link" target="_blank" rel="noopener noreferrer">
-                                        {file.path}
-                                    </a>
-                                </div>
-                            </div>
-                        )}
-                    </>
-                }
+            <Body containerClass="container pt-3">
+                <div className="row">
+                    <div className="col-md-7">
+                        <h1 className="page-header">Suite Logos</h1>
+                        <div className="row">
+                            {contents !== null &&
+                                contents.map((item: GitHubContent) =>
+                                    <SuiteLogo gitHubAccess={gitHubAccess!} key={item.sha} item={item} />
+                                )
+                            }
+                        </div>
+                    </div>
+
+                </div>
             </Body>
         </Page>
     )
