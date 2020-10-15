@@ -1,26 +1,27 @@
 name: Deploy to GitHub Pages
-    on:
-        push:
-            branches:
-            - master
-    jobs:
-      build-and-deploy:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Checkout
-          uses: actions/checkout@v1
 
-        - name: Build
-          run: |
-            npm install
-            npm run-script build
-          env:
-            OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
-            OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+on:
+  push:
+    branches: [ master ]
 
-        - name: Deploy
-          uses: JamesIves/github-pages-deploy-action@releases/v3
-          with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_KEY }}
-            BRANCH: gh-pages
-            FOLDER: dist
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Build
+        run: |
+          npm install
+          npm run-script build
+        env:
+          OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
+          OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_KEY }}
+          BRANCH: gh-pages
+          FOLDER: dist
