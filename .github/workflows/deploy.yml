@@ -1,14 +1,12 @@
 name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: 
-      - master
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
+  on:
+    push:
+      branches:
+        - master
+  jobs:
+    build-and-deploy:
+      runs-on: ubuntu-latest
+      steps:
       - name: Checkout
         uses: actions/checkout@v1
 
@@ -17,8 +15,8 @@ jobs:
           npm install
           npm run-script build
         env:
-          OAUTH_CLIENT_ID: ${{ secrets.OAUTH_CLIENT_ID }}
-          OAUTH_CLIENT_SECRET: ${{ secrets.OAUTH_CLIENT_SECRET }}
+          REACT_APP_INSTAGRAM_ACCESS_TOKEN: ${{ secrets.REACT_APP_INSTAGRAM_ACCESS_TOKEN }}
+          REACT_APP_SMTP_SECURE_TOKEN: ${{ secrets.REACT_APP_SMTP_SECURE_TOKEN }}
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
