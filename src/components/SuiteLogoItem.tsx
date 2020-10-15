@@ -1,6 +1,5 @@
-import { DropdownMenuItem } from "blue-react"
 import React, { useEffect, useState } from "react"
-import { Button, ButtonDropdown, DropdownMenu, DropdownToggle } from "reactstrap"
+import { ButtonDropdown, DropdownMenu, DropdownToggle } from "reactstrap"
 import { GitHubAccess, gitHubApiQuery, GitHubContent, GitHubContentResponse } from "../shared"
 
 export interface SuiteLogoItemProps {
@@ -25,12 +24,6 @@ export function SuiteLogoItem({ gitHubAccess, item }: SuiteLogoItemProps) {
         setFiles(files)
     }
 
-    // if (item.name === "svg") {
-    //     return (
-    //         <Button>{item.name}</Button>
-    //     )
-    // }
-    // else {
     return (
         <ButtonDropdown isOpen={dropdownOpen} toggle={toggleDropdownOpen}>
             <DropdownToggle caret>
