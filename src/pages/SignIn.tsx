@@ -18,18 +18,27 @@ export function SignIn({ setGitHubAccess }: SignInProps) {
                     onSuccess={async ({ code }: { code: string }) => {
                         console.log(code)
 
-                        const res = await fetch(`${proxy}https://github.com/login/oauth/access_token`, {
-                            method: "POST",
-                            headers: {
-                                "Accept": "application/json",
-                                "Content-Type": "application/json"
-                            },
-                            body: JSON.stringify({
-                                client_id: process.env.OAUTH_CLIENT_ID || "d64aa2c0928af6b72a90",
-                                client_secret: process.env.OAUTH_CLIENT_SECRET || "adacdf77487f40bafae58263b8e398b39c9480c4",
-                                code
-                            })
-                        })
+                        // const res = await fetch(`${proxy}https://github.com/login/oauth/access_token`, {
+                        //     method: "POST",
+                        //     headers: {
+                        //         "Accept": "application/json",
+                        //         "Content-Type": "application/json"
+                        //     },
+                        //     body: JSON.stringify({
+                        //         client_id: process.env.OAUTH_CLIENT_ID || "d64aa2c0928af6b72a90",
+                        //         client_secret: process.env.OAUTH_CLIENT_SECRET || "adacdf77487f40bafae58263b8e398b39c9480c4",
+                        //         code
+                        //     })
+                        // })
+
+                        const res = await fetch(`http://localhost:5000?code=${code}`)
+
+                        console.log(res)
+
+                        const json = await res.json()
+                        console.log(json)
+
+                        return
 
                         const access: GitHubAccess = await res.json()
 
