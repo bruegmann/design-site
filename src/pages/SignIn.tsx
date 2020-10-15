@@ -25,8 +25,8 @@ export function SignIn({ setGitHubAccess }: SignInProps) {
                                 "Content-Type": "application/json"
                             },
                             body: JSON.stringify({
-                                client_id: "d64aa2c0928af6b72a90",
-                                client_secret: "adacdf77487f40bafae58263b8e398b39c9480c4",
+                                client_id: process.env.OAUTH_CLIENT_ID || "d64aa2c0928af6b72a90",
+                                client_secret: process.env.OAUTH_CLIENT_SECRET || "adacdf77487f40bafae58263b8e398b39c9480c4",
                                 code
                             })
                         })
