@@ -19,8 +19,7 @@ export function SuiteLogoItem({ gitHubAccess, item }: SuiteLogoItemProps) {
     }, [dropdownOpen])
 
     const fetchFiles = async () => {
-        const files = await gitHubApiQuery(gitHubAccess, item.url) as GitHubContentResponse
-        console.log(files)
+        const files = await gitHubApiQuery(gitHubAccess, item.url, false) as GitHubContentResponse
         setFiles(files)
     }
 
@@ -32,7 +31,7 @@ export function SuiteLogoItem({ gitHubAccess, item }: SuiteLogoItemProps) {
             <DropdownMenu>
                 {files !== null &&
                     files.map((file: GitHubContent) =>
-                        <a key={file.sha} className="dropdown-item" href={file._links.html} target="_blank" rel="noopener noreferrer">
+                        <a key={file.sha} className="dropdown-item" href={file.download_url} target="_blank" rel="noopener noreferrer">
                             {file.name}
                         </a>
                     )

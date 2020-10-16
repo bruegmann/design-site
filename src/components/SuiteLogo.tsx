@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { ButtonGroup, Button } from "reactstrap"
-import { getPhrase, GitHubAccess, gitHubApiQuery, GitHubContent, GitHubContentResponse } from "../shared"
+import { getPhrase, GitHubAccess, gitHubApiQuery, GitHubContent, GitHubContentResponse, proxy } from "../shared"
 import { SuiteLogoItem } from "./SuiteLogoItem"
 
 export interface SuiteLogoProps {
@@ -25,9 +25,10 @@ export function SuiteLogo({ gitHubAccess, item }: SuiteLogoProps) {
         // Get SVG
         contents.forEach(async (item: GitHubContent) => {
             if (item.name === "svg") {
-                const svgContents = await gitHubApiQuery(gitHubAccess, item.url) as GitHubContentResponse
+                const svgContents = await gitHubApiQuery(gitHubAccess, item.url, false) as GitHubContentResponse
                 if (svgContents[0]) {
-                    setSvgItem(svgContents[0])
+                    const svgItem = svgContents[0]
+                    setSvgItem(svgItem)
                 }
             }
         })

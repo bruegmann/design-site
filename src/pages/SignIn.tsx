@@ -2,7 +2,7 @@ import { Intro } from "blue-react"
 import React from "react"
 import { BoxArrowRight } from "react-bootstrap-icons"
 import GitHubLogin from "react-github-login"
-import { GitHubAccess, gitHubOauthClientId, gitHubOauthUrl } from "../shared"
+import { appLogo, appTitle, getPhrase, GitHubAccess, gitHubOauthClientId, gitHubOauthUrl } from "../shared"
 
 export interface SignInProps {
     setGitHubAccess: (access: GitHubAccess) => void
@@ -10,16 +10,15 @@ export interface SignInProps {
 
 export function SignIn({ setGitHubAccess }: SignInProps) {
     return (
-        <Intro logo="/logo.svg" title="Please sign in to see the content">
+        <Intro logo={appLogo} title={appTitle}>
             <div className="text-center">
+                <p className="lead">{getPhrase("Please sign in to see the content")}</p>
+
                 <GitHubLogin
                     clientId={gitHubOauthClientId}
                     redirectUri=""
                     onSuccess={async ({ code }: { code: string }) => {
-                        console.log(code)
-
                         const res = await fetch(`${gitHubOauthUrl}?code=${code}`)
-
                         const access: GitHubAccess = await res.json()
 
                         setGitHubAccess(access)
@@ -27,9 +26,9 @@ export function SignIn({ setGitHubAccess }: SignInProps) {
                     }}
                     onFailure={(response: any) => console.error(response)}
                     scope={['user', 'repo']}
-                    className="btn btn-primary btn-lg"
+                    className="btn btn-primary btn-lg d-inline-flex align-items-center"
                 >
-                    <BoxArrowRight /> Sign in with GitHub
+                    <BoxArrowRight className="mr-1" /> Sign in with GitHub
                 </GitHubLogin>
             </div>
         </Intro>

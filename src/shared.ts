@@ -1,6 +1,6 @@
 import { Utilities } from "blue-react"
 
-export const appLogo = require("./logo.svg")
+export const appLogo = require("./assets/logo.svg")
 export const appTitle = "Corporate Design"
 
 interface IPhrases {
@@ -8,7 +8,9 @@ interface IPhrases {
 }
 
 export const phrases: IPhrases = {
-    "bsw-cti": ["BSWCti", "BSWCti"]
+    "bsw-cti": ["BSWCti", "BSWCti"],
+    "All assets on GitHub": ["All assets on GitHub", "Alle Assets auf GitHub"],
+    "Please sign in to see the content": ["Please sign in to see the content", "Bitte anmelden, um die Inhalte sehen zu können"]
 }
 
 export function getPhrase(keyword: string, countryCode: string | undefined = undefined, _phrases: IPhrases | undefined = undefined) {
@@ -77,13 +79,20 @@ export interface GitHubLink {
     self: string
 }
 
-export async function gitHubApiQuery(gitHubAccess: GitHubAccess, url: string): Promise<GitHubTreeResponse | GitHubContentResponse> {
+export async function gitHubApiQuery(gitHubAccess: GitHubAccess, url: string, caching: boolean = true): Promise<GitHubTreeResponse | GitHubContentResponse> {
+    let headers = {
+        "Authorization": `${gitHubAccess.token_type} ${gitHubAccess.access_token}`,
+        "Content-Type": "application/json",
+        "cache-control": "no-cache"
+    }
+
+    if (caching === false) {
+        headers["cache-control"] = "no-cache"
+    }
+
     const res = await Utilities.fetchData(`${proxy}${url}`, {
         method: "GET",
-        headers: {
-            "Authorization": `${gitHubAccess.token_type} ${gitHubAccess.access_token}`,
-            "Content-Type": "application/json"
-        }
+        headers
     })
 
     const treeResponse = await res.json()

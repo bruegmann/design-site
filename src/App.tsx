@@ -4,8 +4,9 @@ import { BoxArrowLeft, House, List } from "react-bootstrap-icons"
 import HomePage from "./pages/HomePage"
 
 import "./styles/main.scss"
-import { GitHubAccess } from "./shared"
+import { getPhrase, GitHubAccess } from "./shared"
 import { SignIn } from "./pages/SignIn"
+import { GitHubIcon } from "./assets/icons"
 
 function Auth({ gitHubAccess, setGitHubAccess }: any) {
     if (gitHubAccess === null) {
@@ -43,12 +44,21 @@ function App() {
         >
             <SidebarMenu
                 bottomContent={
-                    gitHubAccess !== null ?
-                        <div className="fluent-btn">
-                            <div className="fluent-btn-ball" />
+                    <div className="fluent-btn">
+                        <div className="fluent-btn-ball" />
+
+                        <a
+                            href="https://github.com/bruegmann/design"
+                            target="_blank" rel="noopener noreferrer"
+                            className="blue-app-sidebar-btn btn has-label"
+                        >
+                            <GitHubIcon /> <span className="blue-app-sidebar-label">{getPhrase("All assets on GitHub")}</span>
+                        </a>
+
+                        {gitHubAccess !== null &&
                             <MenuItem onClick={signOut} icon={<BoxArrowLeft />} label="Sign out" />
-                        </div>
-                        : <></>
+                        }
+                    </div>
                 }
             >
                 <MenuItem href="#" icon={<House />} label="Home" isHome />

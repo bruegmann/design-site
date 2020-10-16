@@ -26,7 +26,7 @@ function HomePage({ gitHubAccess }: HomePageProps) {
     return (
         <Page>
             <Header>
-                <HeaderTitle logo={appLogo} appTitle={appTitle}>HomePage</HeaderTitle>
+                <HeaderTitle logo={appLogo} appTitle={appTitle} />
             </Header>
 
             <Body containerClass="container pt-3">
