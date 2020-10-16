@@ -10,7 +10,11 @@ interface IPhrases {
 export const phrases: IPhrases = {
     "bsw-cti": ["BSWCti", "BSWCti"],
     "All assets on GitHub": ["All assets on GitHub", "Alle Assets auf GitHub"],
-    "Please sign in to see the content": ["Please sign in to see the content", "Bitte anmelden, um die Inhalte sehen zu können"]
+    "Please sign in to see the content": ["Please sign in to see the content", "Bitte anmelden, um die Inhalte sehen zu können"],
+    "Get access to GitHub": ["Get access to GitHub", "Zugang zu GitHub bekommen"],
+    "Privacy policy": ["Privacy policy", "Datenschutzerklärung"],
+    "Imprint": ["Imprint", "Impressum"],
+    "Sign in with GitHub": ["Sign in with GitHub", "Anmelden mit GitHub"]
 }
 
 export function getPhrase(keyword: string, countryCode: string | undefined = undefined, _phrases: IPhrases | undefined = undefined) {
@@ -30,8 +34,8 @@ export function getPhrase(keyword: string, countryCode: string | undefined = und
     }
 }
 
-export const gitHubOauthUrl = "http://43k.patorg.org:4000/login/oauth/access_token"
-export const proxy = "http://43k.patorg.org:4000/fetch/"
+export const gitHubOauthUrl = "http://localhost:4000/login/oauth/access_token"
+export const proxy = "http://localhost:4000/fetch/"
 
 // In production (bruegmann.github.io) we need another client ID then in development (localhost:3000)
 export const gitHubOauthClientId = (!process.env.NODE_ENV || process.env.NODE_ENV === "development") ? "d64aa2c0928af6b72a90" : "0e88710af11826fb210a"

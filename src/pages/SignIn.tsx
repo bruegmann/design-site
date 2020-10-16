@@ -1,4 +1,4 @@
-import { Intro } from "blue-react"
+import { Intro, Utilities } from "blue-react"
 import React from "react"
 import { BoxArrowRight } from "react-bootstrap-icons"
 import GitHubLogin from "react-github-login"
@@ -24,12 +24,26 @@ export function SignIn({ setGitHubAccess }: SignInProps) {
                         setGitHubAccess(access)
                         localStorage.setItem("gitHubAccess", JSON.stringify(access))
                     }}
-                    onFailure={(response: any) => console.error(response)}
+                    onFailure={(response: any) => {
+                        console.error(response)
+                        Utilities.setAlertMessage(response.toString(), "danger", true)
+                    }}
                     scope={['user', 'repo']}
                     className="btn btn-primary btn-lg d-inline-flex align-items-center"
                 >
                     <BoxArrowRight className="mr-1" /> Sign in with GitHub
                 </GitHubLogin>
+
+                <div className="mt-3">
+                    <a href="http://ijbwiki.patorg.org/index.php/GitHub" target="_blank" rel="noopener noreferrer">
+                        {getPhrase("Get access to GitHub")}
+                    </a>
+                </div>
+                <div className="mt-5">
+                    <small>
+                        &copy; {new Date().getFullYear()} Brügmann Software GmbH | <a href="https://patorg.de/de/datenschutzerklaerung-2/" target="_blank" rel="noopener noreferrer">{getPhrase("Privacy policy")}</a> | <a href="https://patorg.de/de/impressum/">{getPhrase("Imprint")}</a>
+                    </small>
+                </div>
             </div>
         </Intro>
     )

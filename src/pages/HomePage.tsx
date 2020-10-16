@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 
-import { Page, Header, HeaderTitle, Body, Utilities } from "blue-react"
+import { Page, Header, HeaderTitle, Body } from "blue-react"
 
-import { appLogo, appTitle, getPhrase as _, GitHubAccess, gitHubApiQuery, GitHubContent, GitHubContentResponse, GitHubTree, GitHubTreeResponse, proxy } from "../shared"
+import { appLogo, appTitle, GitHubAccess, gitHubApiQuery, GitHubContent, GitHubContentResponse, GitHubTreeResponse } from "../shared"
 import { SuiteLogo } from "../components/SuiteLogo"
 
 export interface HomePageProps {
@@ -12,16 +12,16 @@ export interface HomePageProps {
 function HomePage({ gitHubAccess }: HomePageProps) {
     const [contents, setContents] = useState<GitHubContentResponse | null>(null)
 
+    const fetchContents = async (tree?: GitHubTreeResponse) => {
+        const contents = await gitHubApiQuery(gitHubAccess!, "https://api.github.com/repos/bruegmann/design/contents/suite-logos/icons") as GitHubContentResponse
+        setContents(contents)
+    }
+
     useEffect(() => {
         if (gitHubAccess !== null && contents === null) {
             fetchContents()
         }
     }, [gitHubAccess, contents])
-
-    const fetchContents = async (tree?: GitHubTreeResponse) => {
-        const contents = await gitHubApiQuery(gitHubAccess!, "https://api.github.com/repos/bruegmann/design/contents/suite-logos/icons") as GitHubContentResponse
-        setContents(contents)
-    }
 
     return (
         <Page>

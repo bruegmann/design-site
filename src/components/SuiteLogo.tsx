@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { ButtonGroup, Button } from "reactstrap"
-import { getPhrase, GitHubAccess, gitHubApiQuery, GitHubContent, GitHubContentResponse, proxy } from "../shared"
+import { ButtonGroup } from "reactstrap"
+import { getPhrase, GitHubAccess, gitHubApiQuery, GitHubContent, GitHubContentResponse } from "../shared"
 import { SuiteLogoItem } from "./SuiteLogoItem"
 
 export interface SuiteLogoProps {
@@ -11,12 +11,6 @@ export interface SuiteLogoProps {
 export function SuiteLogo({ gitHubAccess, item }: SuiteLogoProps) {
     const [contents, setContents] = useState<GitHubContentResponse | null>(null)
     const [svgItem, setSvgItem] = useState<GitHubContent | null>(null)
-
-    useEffect(() => {
-        if (contents === null) {
-            fetchContents()
-        }
-    }, [contents])
 
     const fetchContents = async () => {
         const contents = await gitHubApiQuery(gitHubAccess, item.url) as GitHubContentResponse
@@ -33,6 +27,12 @@ export function SuiteLogo({ gitHubAccess, item }: SuiteLogoProps) {
             }
         })
     }
+
+    useEffect(() => {
+        if (contents === null) {
+            fetchContents()
+        }
+    }, [contents])
 
     return (
         <div className="col-md-6">

@@ -12,16 +12,16 @@ export function SuiteLogoItem({ gitHubAccess, item }: SuiteLogoItemProps) {
     const [dropdownOpen, setDropdownOpen] = useState<boolean>(false)
     const toggleDropdownOpen = () => setDropdownOpen(!dropdownOpen)
 
+    const fetchFiles = async () => {
+        const files = await gitHubApiQuery(gitHubAccess, item.url, false) as GitHubContentResponse
+        setFiles(files)
+    }
+
     useEffect(() => {
         if (dropdownOpen === true && files === null) {
             fetchFiles()
         }
     }, [dropdownOpen])
-
-    const fetchFiles = async () => {
-        const files = await gitHubApiQuery(gitHubAccess, item.url, false) as GitHubContentResponse
-        setFiles(files)
-    }
 
     return (
         <ButtonDropdown isOpen={dropdownOpen} toggle={toggleDropdownOpen}>
