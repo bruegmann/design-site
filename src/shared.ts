@@ -28,8 +28,9 @@ export function getPhrase(keyword: string, countryCode: string | undefined = und
     }
 }
 
-export const proxy = "https://thingproxy.freeboard.io/fetch/"
-// export const proxy = "http://localhost:4000/fetch/"
+// export const proxy = "https://thingproxy.freeboard.io/fetch/"
+export const gitHubOauthUrl = "http://localhost:4000/login/oauth/access_token"
+export const proxy = "http://localhost:4000/fetch/"
 
 export interface GitHubAccess {
     access_token: string
