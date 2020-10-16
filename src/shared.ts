@@ -8,7 +8,6 @@ interface IPhrases {
 }
 
 export const phrases: IPhrases = {
-    "bsw-cti": ["BSWCti", "BSWCti"],
     "All assets on GitHub": ["All assets on GitHub", "Alle Assets auf GitHub"],
     "Please sign in to see the content": ["Please sign in to see the content", "Bitte anmelden, um die Inhalte sehen zu können"],
     "Get access to GitHub": ["Get access to GitHub", "Zugang zu GitHub bekommen"],

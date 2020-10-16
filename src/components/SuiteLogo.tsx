@@ -39,7 +39,7 @@ export function SuiteLogo({ gitHubAccess, item }: SuiteLogoProps) {
             <div className="card mb-4">
                 <div className="card-body">
                     <img src={svgItem?.download_url} className="mb-4" alt={item.name} />
-                    <h5>{getPhrase(item.name)}</h5>
+                    <h5>{item.name}</h5>
 
                     {contents !== null &&
                         <ButtonGroup>
