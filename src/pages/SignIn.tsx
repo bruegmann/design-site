@@ -2,7 +2,7 @@ import { Intro } from "blue-react"
 import React from "react"
 import { BoxArrowRight } from "react-bootstrap-icons"
 import GitHubLogin from "react-github-login"
-import { GitHubAccess, gitHubOauthUrl, proxy } from "../shared"
+import { GitHubAccess, gitHubOauthClientId, gitHubOauthUrl } from "../shared"
 
 export interface SignInProps {
     setGitHubAccess: (access: GitHubAccess) => void
@@ -13,7 +13,7 @@ export function SignIn({ setGitHubAccess }: SignInProps) {
         <Intro logo="/logo.svg" title="Please sign in to see the content">
             <div className="text-center">
                 <GitHubLogin
-                    clientId="0e88710af11826fb210a"
+                    clientId={gitHubOauthClientId}
                     redirectUri=""
                     onSuccess={async ({ code }: { code: string }) => {
                         console.log(code)
