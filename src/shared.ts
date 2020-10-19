@@ -93,11 +93,16 @@ export async function gitHubApiQuery(gitHubAccess: GitHubAccess, url: string, ca
         headers["cache-control"] = "no-cache"
     }
 
-    const res = await Utilities.fetchData(`${proxy}${url}`, {
-        method: "GET",
-        headers
-    })
+    try {
+        const res = await Utilities.fetchData(`${proxy}${url}`, {
+            method: "GET",
+            headers
+        })
 
-    const treeResponse = await res.json()
-    return treeResponse
+        const treeResponse = await res.json()
+        return treeResponse
+    }
+    catch (ex) {
+        Utilities.setAlertMessage("An error occured", "danger", true, ex.toString())
+    }
 }

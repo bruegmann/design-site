@@ -13,7 +13,20 @@ export function SuiteLogoItem({ gitHubAccess, item }: SuiteLogoItemProps) {
     const toggleDropdownOpen = () => setDropdownOpen(!dropdownOpen)
 
     const fetchFiles = async () => {
-        const files = await gitHubApiQuery(gitHubAccess, item.url, false) as GitHubContentResponse
+        let files = await gitHubApiQuery(gitHubAccess, item.url, false) as GitHubContentResponse
+        files = files.sort((a: GitHubContent, b: GitHubContent) => {
+            const aNumber = parseInt(a.name)
+            const bNumber = parseInt(b.name)
+
+            if (aNumber < bNumber) {
+                return -1
+            }
+            if (aNumber > bNumber) {
+                return 1
+            }
+
+            return 0
+        })
         setFiles(files)
     }
 

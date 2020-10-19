@@ -14,18 +14,20 @@ export function SuiteLogo({ gitHubAccess, item }: SuiteLogoProps) {
 
     const fetchContents = async () => {
         const contents = await gitHubApiQuery(gitHubAccess, item.url) as GitHubContentResponse
-        setContents(contents)
+        if (contents) {
+            setContents(contents)
 
-        // Get SVG
-        contents.forEach(async (item: GitHubContent) => {
-            if (item.name === "svg") {
-                const svgContents = await gitHubApiQuery(gitHubAccess, item.url, false) as GitHubContentResponse
-                if (svgContents[0]) {
-                    const svgItem = svgContents[0]
-                    setSvgItem(svgItem)
+            // Get SVG
+            contents.forEach(async (item: GitHubContent) => {
+                if (item.name === "svg") {
+                    const svgContents = await gitHubApiQuery(gitHubAccess, item.url, false) as GitHubContentResponse
+                    if (svgContents[0]) {
+                        const svgItem = svgContents[0]
+                        setSvgItem(svgItem)
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     useEffect(() => {
