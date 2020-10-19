@@ -11,9 +11,11 @@ export interface HomePageProps {
 
 function HomePage({ gitHubAccess }: HomePageProps) {
     const [contents, setContents] = useState<GitHubContentResponse | null>(null)
+    const [currentFetch, setCurrentFetch] = useState<number>(0)
 
     const fetchContents = async (tree?: GitHubTreeResponse) => {
         const contents = await gitHubApiQuery(gitHubAccess!, "https://api.github.com/repos/bruegmann/design/contents/suite-logos/icons") as GitHubContentResponse
+        setCurrentFetch(0)
         setContents(contents)
     }
 
@@ -30,18 +32,19 @@ function HomePage({ gitHubAccess }: HomePageProps) {
             </Header>
 
             <Body containerClass="container pt-3">
+                <h1 className="page-header">Icons and logos</h1>
                 <div className="row">
-                    <div className="col-md-7">
-                        <h1 className="page-header">Suite Logos</h1>
-                        <div className="row">
-                            {contents !== null &&
-                                contents.map((item: GitHubContent) =>
-                                    <SuiteLogo gitHubAccess={gitHubAccess!} key={item.sha} item={item} />
-                                )
-                            }
-                        </div>
-                    </div>
-
+                    {contents !== null &&
+                        contents.map((item: GitHubContent, key: number) =>
+                            <SuiteLogo
+                                gitHubAccess={gitHubAccess!}
+                                key={item.sha}
+                                item={item}
+                                doFetch={currentFetch === key}
+                                onFetched={() => setCurrentFetch(key + 1)}
+                            />
+                        )
+                    }
                 </div>
             </Body>
         </Page>

@@ -13,3 +13,32 @@
 .bi {
     @extend .mb-1;
 }
+
+@import "~placeholder-loading/src/scss/placeholder-loading";
+.ph-item.no-border {
+    padding: 0;
+    border: none;
+
+    & > * {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.square {
+    // float:left;
+    position: relative;
+    padding-bottom : 100%;
+    overflow:hidden;
+}
+
+.content {
+    position:absolute;
+    height: 100%; /* = 100% - 2*5% padding */
+    width: 100%; /* = 100% - 2*5% padding */
+}
+
+.content .rs{
+    height:100%;
+    width:100%;
+}

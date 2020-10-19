@@ -10,6 +10,7 @@
     "blue-react": "^6.14.1",
     "gh-pages": "^3.1.0",
     "node-sass": "^4.14.1",
+    "placeholder-loading": "^0.2.6",
     "react": "^16.13.1",
     "react-bootstrap-icons": "^1.0.0",
     "react-dom": "^16.13.1",
