@@ -18,12 +18,12 @@ export function SuiteLogo({ doFetch, gitHubAccess, item, onFetched }: SuiteLogoP
         const contents = await gitHubApiQuery(gitHubAccess, item.url) as GitHubContentResponse
         if (contents) {
             setContents(contents)
-            onFetched()
 
             // Get SVG
             contents.forEach(async (item: GitHubContent) => {
                 if (item.name === "svg") {
                     const svgContents = await gitHubApiQuery(gitHubAccess, item.url, false) as GitHubContentResponse
+                    onFetched()
                     if (svgContents[0]) {
                         const svgItem = svgContents[0]
                         setSvgItem(svgItem)
@@ -48,7 +48,19 @@ export function SuiteLogo({ doFetch, gitHubAccess, item, onFetched }: SuiteLogoP
                         <>
                             <div className="square mb-4">
                                 <div className="content">
-                                    <img src={svgItem?.download_url} className="rs" alt={item.name} />
+                                    {svgItem !== null ?
+                                        <img src={svgItem?.download_url} className="rs" alt={item.name} />
+                                        :
+                                        <div className="ph-item no-border">
+                                            <div className="ph-col-12">
+                                                <div className="square mb-4">
+                                                    <div className="content">
+                                                        <div className="ph-picture rs loading" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                             <h5>{item.name}</h5>
@@ -64,7 +76,7 @@ export function SuiteLogo({ doFetch, gitHubAccess, item, onFetched }: SuiteLogoP
                             <div className="ph-col-12">
                                 <div className="square mb-4">
                                     <div className="content">
-                                        <div className="ph-picture rs" />
+                                        <div className="ph-picture rs loading" />
                                     </div>
                                 </div>
                                 <h5>{item.name}</h5>

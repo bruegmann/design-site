@@ -6,13 +6,12 @@
 @import "~blue-react/dist/style.scss";
 
 /* Stylesheet for blueicon, if you use it. */
-// $bi-fonts-direction: "~blueicon/fonts/";
-// @import "~blueicon/blueicon";
+@import "~blueicon/blueicon";
 
 /* Make look Bootstrap icons a little bit better */
-.bi {
-    @extend .mb-1;
-}
+// .bi {
+//     @extend .mb-1;
+// }
 
 @import "~placeholder-loading/src/scss/placeholder-loading";
 .ph-item.no-border {
@@ -38,7 +37,11 @@
     width: 100%; /* = 100% - 2*5% padding */
 }
 
-.content .rs{
+.content .rs {
     height:100%;
     width:100%;
+}
+
+.content .rs.loading {
+    border-radius: 25%;
 }
