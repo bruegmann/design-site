@@ -33,7 +33,7 @@ function HomePage({ gitHubAccess }: HomePageProps) {
             <Body containerClass="container pt-3">
                 <h1 className="page-header">Organisations- und Produkt-Logos</h1>
                 <div className="row">
-                    {contents !== null &&
+                    {contents !== null && Array.isArray(contents) &&
                         contents.map((item: GitHubContent, key: number) =>
                             <SuiteLogo
                                 gitHubAccess={gitHubAccess!}

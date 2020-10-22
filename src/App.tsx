@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Grid, SidebarMenu, MenuItem } from "blue-react"
-import { BoxArrowLeft, House, Images, List } from "react-bootstrap-icons"
+import { BoxArrowLeft, CheckCircleFill, ExclamationCircleFill, House, Images, InfoCircleFill, List, XCircleFill } from "react-bootstrap-icons"
 import HomePage from "./pages/HomePage"
 import IconsPage from "./pages/IconsPage"
 
@@ -46,6 +46,12 @@ function App() {
                     component: <Auth gitHubAccess={gitHubAccess} setGitHubAccess={setGitHubAccess} TheComponent={IconsPage} />
                 }
             ]}
+            statusIcons={{
+                danger: <XCircleFill />,
+                info: <InfoCircleFill />,
+                success: <CheckCircleFill />,
+                warning: <ExclamationCircleFill />
+            }}
         >
             <SidebarMenu
                 bottomContent={
