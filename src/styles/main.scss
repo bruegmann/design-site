@@ -8,10 +8,7 @@
 /* Stylesheet for blueicon, if you use it. */
 @import "~blueicon/blueicon";
 
-/* Make look Bootstrap icons a little bit better */
-// .bi {
-//     @extend .mb-1;
-// }
+@import "~blueicon-colored/style.css";
 
 @import "~placeholder-loading/src/scss/placeholder-loading";
 .ph-item.no-border {

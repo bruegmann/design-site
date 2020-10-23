@@ -1,21 +1,21 @@
-import React, { ReactNode } from "react";
-import PropTypes from "prop-types";
-import BlueIconColored from "blueicon-colored";
+import React, { ReactNode } from "react"
+import BlueIconColored from "blueicon-colored"
+import { BlueiconKeywordsItem } from "../shared"
 
 // Convert to correct camel case for component names
 function hyphensToCamelCase(str) {
-    str = str.replace("-", "_");
+    str = str.replace("-", "_")
 
-    var arr = str.split(/[_-]/);
-    var newStr = "";
+    var arr = str.split(/[_-]/)
+    var newStr = ""
     for (var i = 0; i < arr.length; i++) {
-        newStr += arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+        newStr += arr[i].charAt(0).toUpperCase() + arr[i].slice(1)
     }
-    return newStr;
+    return newStr
 }
 
 interface IconProps {
-    icon?: any
+    icon?: BlueiconKeywordsItem
     blueIconColoredOn?: boolean
     biCclass?: string
     biAclass?: string
@@ -30,22 +30,22 @@ class Icon extends React.Component<IconProps, IconState> {
     state = {
         colorIcon: null,
         componentName: null
-    };
+    }
 
     componentDidUpdate(prevProps) {
         if (prevProps.blueIconColoredOn != this.props.blueIconColoredOn) {
-            this.componentDidMount();
+            this.componentDidMount()
         }
     }
 
     componentDidMount() {
         if (this.props.blueIconColoredOn) {
-            const componentName = hyphensToCamelCase(this.props.icon.iconName);
+            const componentName = hyphensToCamelCase(this.props.icon.iconName)
 
             this.setState({
                 colorIcon: BlueIconColored[componentName],
                 componentName: componentName
-            });
+            })
         }
     }
 
@@ -73,15 +73,8 @@ class Icon extends React.Component<IconProps, IconState> {
                     </code>
                 </div>
             </div>
-        );
+        )
     }
 }
 
-// Icon.propTypes = {
-//     icon: PropTypes.object,
-//     blueIconColoredOn: PropTypes.bool,
-//     biCclass: PropTypes.string,
-//     biAclass: PropTypes.string
-// };
-
-export default Icon;
+export default Icon

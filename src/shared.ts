@@ -106,3 +106,8 @@ export async function gitHubApiQuery(gitHubAccess: GitHubAccess, url: string, ca
         Utilities.setAlertMessage("An error occured", "danger", true, ex.toString())
     }
 }
+
+export interface BlueiconKeywordsItem {
+    iconName: string
+    keywords: string[]
+}
