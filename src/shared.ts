@@ -111,3 +111,7 @@ export interface BlueiconKeywordsItem {
     iconName: string
     keywords: string[]
 }
+
+export interface DesignSitePageProps {
+    gitHubAccess: GitHubAccess | null
+}

@@ -2,6 +2,7 @@ import { Intro, Utilities } from "blue-react"
 import React from "react"
 import { BoxArrowRight } from "react-bootstrap-icons"
 import GitHubLogin from "react-github-login"
+import { Footer } from "../components/Footer"
 import { appLogo, appTitle, getPhrase, GitHubAccess, gitHubOauthClientId, gitHubOauthUrl } from "../shared"
 
 export interface SignInProps {
@@ -39,11 +40,7 @@ export function SignIn({ setGitHubAccess }: SignInProps) {
                         {getPhrase("Get access to GitHub")}
                     </a>
                 </div>
-                <div className="mt-5">
-                    <small>
-                        &copy; {new Date().getFullYear()} Brügmann Software GmbH | <a href="https://patorg.de/de/datenschutzerklaerung-2/" target="_blank" rel="noopener noreferrer">{getPhrase("Privacy policy")}</a> | <a href="https://patorg.de/de/impressum/">{getPhrase("Imprint")}</a>
-                    </small>
-                </div>
+                <Footer />
             </div>
         </Intro>
     )

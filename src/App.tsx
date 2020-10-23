@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import { Grid, SidebarMenu, MenuItem } from "blue-react"
-import { BoxArrowLeft, CheckCircleFill, ExclamationCircleFill, House, Images, InfoCircleFill, List, XCircleFill } from "react-bootstrap-icons"
-import HomePage from "./pages/HomePage"
+import { BadgeTm, BoxArrowLeft, CheckCircleFill, Collection, Droplet, ExclamationCircleFill, House, Images, InfoCircleFill, List, XCircleFill } from "react-bootstrap-icons"
+import FontAndColorsPage from "./pages/FontAndColorsPage"
+import LogosPage from "./pages/LogosPage"
 import IconsPage from "./pages/IconsPage"
 
 import "./styles/main.scss"
@@ -38,8 +39,12 @@ function App() {
             sidebarToggleIconComponent={<List />}
             pages={[
                 {
-                    name: "home",
-                    component: <Auth gitHubAccess={gitHubAccess} setGitHubAccess={setGitHubAccess} TheComponent={HomePage} />
+                    name: "fonts-and-colors",
+                    component: <Auth gitHubAccess={gitHubAccess} setGitHubAccess={setGitHubAccess} TheComponent={FontAndColorsPage} />
+                },
+                {
+                    name: "logos",
+                    component: <Auth gitHubAccess={gitHubAccess} setGitHubAccess={setGitHubAccess} TheComponent={LogosPage} />
                 },
                 {
                     name: "icons",
@@ -66,13 +71,22 @@ function App() {
                             <GitHubIcon /> <span className="blue-app-sidebar-label">{getPhrase("All assets on GitHub")}</span>
                         </a>
 
+                        <a
+                            href="https://bruegmann.github.io/blue-react"
+                            target="_blank" rel="noopener noreferrer"
+                            className="blue-app-sidebar-btn btn has-label"
+                        >
+                            <Collection /> <span className="blue-app-sidebar-label">Blue React</span>
+                        </a>
+
                         {gitHubAccess !== null &&
                             <MenuItem onClick={signOut} icon={<BoxArrowLeft />} label="Sign out" />
                         }
                     </div>
                 }
             >
-                <MenuItem href="#/home" icon={<House />} label="Home" isHome />
+                <MenuItem href="#/fonts-and-colors" icon={<Droplet />} label="Fonts und Farben" isHome />
+                <MenuItem href="#/logos" icon={<BadgeTm />} label="Product-Logos" />
                 <MenuItem href="#/icons" icon={<Images />} label="Icons" />
             </SidebarMenu>
         </Grid>

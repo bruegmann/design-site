@@ -4,6 +4,7 @@ import { Bootstrap, Code } from "react-bootstrap-icons"
 import { appLogo, appTitle, BlueiconKeywordsItem } from "../shared"
 import keywords from "../data/blueicon-keywords.json"
 import Icon from "../components/Icon"
+import { Footer } from "../components/Footer"
 
 function IconsPage() {
     const [itemsToShow, setItemsToShow] = useState<number>(40)
@@ -100,6 +101,8 @@ function IconsPage() {
                         </FluentBtn>
                     }
                 </article>
+
+                <Footer />
             </Body>
         </Page>
     )
