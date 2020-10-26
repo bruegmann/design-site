@@ -39,7 +39,7 @@ function App() {
             sidebarToggleIconComponent={<List />}
             pages={[
                 {
-                    name: "fonts-and-colors",
+                    name: "home",
                     component: <Auth gitHubAccess={gitHubAccess} setGitHubAccess={setGitHubAccess} TheComponent={FontAndColorsPage} />
                 },
                 {
@@ -85,7 +85,7 @@ function App() {
                     </div>
                 }
             >
-                <MenuItem href="#/fonts-and-colors" icon={<Droplet />} label="Fonts und Farben" isHome />
+                <MenuItem href="#/home" icon={<Droplet />} label="Fonts und Farben" isHome />
                 <MenuItem href="#/logos" icon={<BadgeTm />} label="Product-Logos" />
                 <MenuItem href="#/icons" icon={<Images />} label="Icons" />
             </SidebarMenu>
