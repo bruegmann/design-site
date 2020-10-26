@@ -33,8 +33,11 @@ export function getPhrase(keyword: string, countryCode: string | undefined = und
     }
 }
 
-export const gitHubOauthUrl = "http://localhost:4000/login/oauth/access_token"
-export const proxy = "http://localhost:4000/fetch/"
+// export const gitHubOauthUrl = "http://localhost:4000/login/oauth/access_token"
+// export const proxy = "http://localhost:4000/fetch/"
+
+export const gitHubOauthUrl = "https://github-proxy.patorg.de/login/oauth/access_token"
+export const proxy = "https://github-proxy.patorg.de/fetch/"
 
 // In production (bruegmann.github.io) we need another client ID then in development (localhost:3000)
 export const gitHubOauthClientId = (!process.env.NODE_ENV || process.env.NODE_ENV === "development") ? "d64aa2c0928af6b72a90" : "0e88710af11826fb210a"
