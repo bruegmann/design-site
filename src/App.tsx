@@ -1,12 +1,12 @@
 import React, { useState } from "react"
-import { Grid, SidebarMenu, MenuItem } from "blue-react"
+import { Grid, SidebarMenu, MenuItem, HeaderTitle } from "blue-react"
 import { BadgeTm, BoxArrowLeft, CheckCircleFill, Collection, Droplet, ExclamationCircleFill, House, Images, InfoCircleFill, List, XCircleFill } from "react-bootstrap-icons"
 import FontAndColorsPage from "./pages/FontAndColorsPage"
 import LogosPage from "./pages/LogosPage"
 import IconsPage from "./pages/IconsPage"
 
 import "./styles/main.scss"
-import { getPhrase, GitHubAccess } from "./shared"
+import { appLogo, appTitle, getPhrase, GitHubAccess } from "./shared"
 import { SignIn } from "./pages/SignIn"
 import { GitHubIcon } from "./assets/icons"
 
@@ -57,7 +57,10 @@ function App() {
                 success: <CheckCircleFill />,
                 warning: <ExclamationCircleFill />
             }}
+            disableHeaders
         >
+            <HeaderTitle logo={appLogo} appTitle="Design" sidebar />
+
             <SidebarMenu
                 bottomContent={
                     <div className="fluent-btn">

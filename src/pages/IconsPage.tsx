@@ -1,7 +1,7 @@
-import { Body, FluentBtn, Header, HeaderTitle, Page, Search, Switch } from "blue-react"
+import { Body, FluentBtn, Page, Search, Switch } from "blue-react"
 import React, { useState } from "react"
 import { Bootstrap, Code } from "react-bootstrap-icons"
-import { appLogo, appTitle, BlueiconKeywordsItem } from "../shared"
+import { BlueiconKeywordsItem } from "../shared"
 import keywords from "../data/blueicon-keywords.json"
 import Icon from "../components/Icon"
 import { Footer } from "../components/Footer"
@@ -32,10 +32,6 @@ function IconsPage() {
 
     return (
         <Page>
-            <Header>
-                <HeaderTitle logo={appLogo} appTitle={appTitle} />
-            </Header>
-
             <Body containerClass="container pt-3">
                 <article>
                     <h1 className="page-header">Bootstrap Icons</h1>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 
-import { Page, Header, HeaderTitle, Body } from "blue-react"
+import { Page, Body } from "blue-react"
 
-import { appLogo, appTitle, DesignSitePageProps, GitHubAccess, gitHubApiQuery, GitHubContent, GitHubContentResponse, GitHubTreeResponse } from "../shared"
+import { DesignSitePageProps, gitHubApiQuery, GitHubContent, GitHubContentResponse } from "../shared"
 import { SuiteLogo } from "../components/SuiteLogo"
 import { Footer } from "../components/Footer"
 
@@ -23,10 +23,6 @@ function LogosPage({ gitHubAccess }: DesignSitePageProps) {
 
     return (
         <Page>
-            <Header>
-                <HeaderTitle logo={appLogo} appTitle={appTitle} />
-            </Header>
-
             <Body containerClass="container pt-3">
                 <article>
                     <h1 className="page-header">Organisations- und Produkt-Logos</h1>

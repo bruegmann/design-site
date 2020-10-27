@@ -1,8 +1,8 @@
 import React from "react"
-import { Page, Header, HeaderTitle, Body, FluentBtn, Utilities } from "blue-react"
+import { Page, Body, FluentBtn, Utilities } from "blue-react"
 import { CopyToClipboard } from "react-copy-to-clipboard"
 
-import { appLogo, appTitle, DesignSitePageProps } from "../shared"
+import { DesignSitePageProps } from "../shared"
 import { Footer } from "../components/Footer"
 
 function FontAndColorsPage({ gitHubAccess }: DesignSitePageProps) {
@@ -22,10 +22,6 @@ function FontAndColorsPage({ gitHubAccess }: DesignSitePageProps) {
 
     return (
         <Page>
-            <Header>
-                <HeaderTitle logo={appLogo} appTitle={appTitle} />
-            </Header>
-
             <Body containerClass="container pt-3">
                 <article>
                     <h1 className="page-header">Primärfarben</h1>
